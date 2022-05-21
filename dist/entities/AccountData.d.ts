@@ -1,0 +1,30 @@
+export declare class AccountData {
+    id: number;
+    name: string;
+    password: string;
+    activated: boolean;
+    accessLevel: number;
+    membership: number;
+    oldMembership: number;
+    lastServer: number;
+    lastIp: string | null;
+    ipForce: string | null;
+    rewardPoints: number | null;
+    expire: string | null;
+    toll: number;
+    email: string | null;
+    address: string | null;
+    lastMac: string;
+    balance: number;
+    luna: number;
+    vote: number;
+    rememberToken: string | null;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+    rewardedStatus: number;
+    jumping: number;
+    freeJumping: boolean;
+    hash: string | null;
+    discird_id: Number | null;
+    confirmed: string | null;
+}

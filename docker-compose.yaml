@@ -1,0 +1,36 @@
+version: '3.1'
+
+volumes:
+  db_data:
+
+networks:
+  default:
+
+services:
+  ###> doctrine/doctrine-bundle ###
+  db:
+    image: mariadb
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --innodb-file-per-table=1 --skip-innodb-read-only-compressed
+    restart: always
+    networks:
+      - default
+    volumes:
+      - db_data:/var/lib/mysql:z
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+
+  admin:
+    image: phpmyadmin
+    restart: always
+    networks:
+      - default
+    environment:
+      PMA_HOST: db
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+###< doctrine/doctrine-bundle ###

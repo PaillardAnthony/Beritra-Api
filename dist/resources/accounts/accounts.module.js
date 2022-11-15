@@ -17,8 +17,8 @@ let AccountsModule = class AccountsModule {
 AccountsModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([AccountData_1.AccountData])],
-        controllers: [accounts_controller_1.AccountsController],
-        providers: [accounts_service_1.AccountsService]
+        providers: [accounts_service_1.AccountsService],
+        controllers: [accounts_controller_1.AccountsController]
     })
 ], AccountsModule);
 exports.AccountsModule = AccountsModule;

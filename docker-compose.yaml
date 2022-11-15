@@ -21,14 +21,14 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
 
-
   admin:
     image: phpmyadmin
     restart: always
     networks:
       - default
     environment:
-      PMA_HOST: db
+      - PMA_HOST=db
+      - UPLOAD_LIMIT=300M
     ports:
       - 8080:80
     depends_on:

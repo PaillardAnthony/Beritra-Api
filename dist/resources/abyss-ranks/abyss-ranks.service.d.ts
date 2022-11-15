@@ -1,9 +1,11 @@
-import { CreateAbyssRankDto } from './dto/create-abyss-rank.dto';
 import { UpdateAbyssRankDto } from './dto/update-abyss-rank.dto';
+import { AbyssRank } from './../../entities/AbyssRank';
+import { Repository } from 'typeorm';
 export declare class AbyssRanksService {
-    create(createAbyssRankDto: CreateAbyssRankDto): string;
-    findAll(): string;
-    findOne(id: number): string;
-    update(id: number, updateAbyssRankDto: UpdateAbyssRankDto): string;
-    remove(id: number): string;
+    private repository;
+    constructor(repository: Repository<AbyssRank>);
+    findAll(): Promise<AbyssRank[]>;
+    findOne(id: number): Promise<AbyssRank>;
+    update(id: number, updateAbyssRankDto: UpdateAbyssRankDto): Promise<import("typeorm").UpdateResult>;
+    remove(id: number): Promise<import("typeorm").DeleteResult>;
 }

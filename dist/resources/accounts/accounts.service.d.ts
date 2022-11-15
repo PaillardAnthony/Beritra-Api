@@ -1,4 +1,3 @@
-import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
 import { Repository } from "typeorm";
 import { AccountData } from "../../entities/AccountData";
@@ -10,11 +9,12 @@ export interface LoginOutput {
 export declare class AccountsService {
     private repository;
     constructor(repository: Repository<AccountData>);
-    create(createAccountDto: CreateAccountDto): AccountData;
+    create(createAccountDto: UpdateAccountDto): Promise<UpdateAccountDto & AccountData>;
     findAll(): Promise<AccountData[]>;
     getByName(name: string): Promise<AccountData>;
     findOne(id: number): Promise<AccountData>;
     update(id: number, updateAccountDto: UpdateAccountDto): Promise<import("typeorm").UpdateResult>;
     remove(id: number): Promise<import("typeorm").DeleteResult>;
     auth(auth: AuthDto): Promise<LoginOutput>;
+    hashPass(password: string): string;
 }

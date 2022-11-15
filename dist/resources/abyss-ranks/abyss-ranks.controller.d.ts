@@ -3,8 +3,8 @@ import { UpdateAbyssRankDto } from './dto/update-abyss-rank.dto';
 export declare class AbyssRanksController {
     private readonly abyssRanksService;
     constructor(abyssRanksService: AbyssRanksService);
-    findAll(): string;
-    findOne(id: string): string;
-    update(id: string, updateAbyssRankDto: UpdateAbyssRankDto): string;
-    remove(id: string): string;
+    findAll(): Promise<import("../../entities/AbyssRank").AbyssRank[]>;
+    findOne(id: string): Promise<import("../../entities/AbyssRank").AbyssRank>;
+    update(id: string, updateAbyssRankDto: UpdateAbyssRankDto): Promise<import("typeorm").UpdateResult>;
+    remove(id: string): Promise<import("typeorm").DeleteResult>;
 }

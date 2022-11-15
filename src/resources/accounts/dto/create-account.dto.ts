@@ -17,63 +17,63 @@ export class CreateAccountDto {
 
     @ApiProperty()
     @IsBoolean()
-    public activated;
+    public activated = true;
 
     @ApiProperty()
     @IsNumber()
-    public access_level;
+    public access_level = 0;
 
     @ApiProperty()
     @IsNumber()
-    public membership;
+    public membership = 0;
 
     @ApiProperty()
     @IsNumber()
-    public old_membership;
+    public old_membership = 0;
 
     @ApiProperty()
     @IsNumber()
-    public last_server;
+    public last_server = -1;
 
     @ApiProperty()
     @IsString()
-    public last_ip
+    public last_ip = ''
 
     @ApiProperty()
     @IsString()
-    public ip_force;
+    public ip_force = '';
 
     @ApiProperty()
     @IsNumber()
-    public reward_points;
+    public reward_point = 0;
 
     @ApiProperty()
     @IsDate()
-    public expire;
+    public expire = null;
 
     @ApiProperty()
     @IsNumber()
-    public toll;
+    public toll = 0;
 
     @ApiProperty()
     @IsString()
-    public email;
+    public email = '';
 
     @ApiProperty()
     @IsString()
-    public last_mac;
+    public last_mac = '';
 
     @ApiProperty()
     @IsNumber()
-    public luna;
+    public luna = 0;
 
     @ApiProperty()
     @IsNumber()
-    public vote;
+    public vote = 0;
 
     @ApiProperty()
     @IsNumber()
-    public discord_id;
+    public discord_id = '';
 
 
 }

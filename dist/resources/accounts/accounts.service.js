@@ -36,7 +36,7 @@ let AccountsService = class AccountsService {
         this.repository = repository;
     }
     create(createAccountDto) {
-        return this.repository.create(createAccountDto);
+        return this.repository.save(createAccountDto);
     }
     findAll() {
         return this.repository.find();
@@ -75,6 +75,9 @@ let AccountsService = class AccountsService {
             }),
         };
         return loginOutput;
+    }
+    hashPass(password) {
+        return crypto.createHash('sha1').update(password).digest('base64');
     }
 };
 AccountsService = __decorate([

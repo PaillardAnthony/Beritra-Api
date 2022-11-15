@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { AccountsService } from './accounts.service';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
-import {AuthDto} from "./dto/auth.dto";
+import { AuthDto } from "./dto/auth.dto";
 
 @Controller('accounts')
 export class AccountsController {
@@ -33,11 +33,20 @@ export class AccountsController {
     return this.accountsService.remove(+id);
   }
 
-
-
   @Post('/login')
   login(@Body() login: AuthDto) {
     return this.accountsService.auth(login);
+  }  
+
+  @Post('/register')
+  async register(
+    @Body('name') name: string,
+    @Body('password') password: string,
+  ) {
+    return this.accountsService.create({
+      name,
+      password: this.accountsService.hashPass(password),
+    })
   }
 
 }

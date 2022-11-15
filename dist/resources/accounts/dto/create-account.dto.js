@@ -10,9 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateAccountDto = void 0;
+const openapi = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 const swagger_1 = require("@nestjs/swagger");
 class CreateAccountDto {
+    constructor() {
+        this.activated = true;
+        this.access_level = 0;
+        this.membership = 0;
+        this.old_membership = 0;
+        this.last_server = -1;
+        this.last_ip = '';
+        this.ip_force = '';
+        this.reward_point = 0;
+        this.expire = null;
+        this.toll = 0;
+        this.email = '';
+        this.last_mac = '';
+        this.luna = 0;
+        this.vote = 0;
+        this.discord_id = '';
+    }
+    static _OPENAPI_METADATA_FACTORY() {
+        return { id: { required: true, type: () => Object }, name: { required: true, type: () => Object }, password: { required: true, type: () => Object }, activated: { required: true, type: () => Object, default: true }, access_level: { required: true, type: () => Object, default: 0 }, membership: { required: true, type: () => Object, default: 0 }, old_membership: { required: true, type: () => Object, default: 0 }, last_server: { required: true, type: () => Object, default: -1 }, last_ip: { required: true, type: () => Object, default: '' }, ip_force: { required: true, type: () => Object, default: '' }, reward_point: { required: true, type: () => Object, default: 0 }, expire: { required: true, type: () => Object, default: null }, toll: { required: true, type: () => Object, default: 0 }, email: { required: true, type: () => Object, default: '' }, last_mac: { required: true, type: () => Object, default: '' }, luna: { required: true, type: () => Object, default: 0 }, vote: { required: true, type: () => Object, default: 0 }, discord_id: { required: true, type: () => Object, default: '' } };
+    }
 }
 __decorate([
     (0, swagger_1.ApiProperty)(),
@@ -68,7 +89,7 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Object)
-], CreateAccountDto.prototype, "reward_points", void 0);
+], CreateAccountDto.prototype, "reward_point", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsDate)(),

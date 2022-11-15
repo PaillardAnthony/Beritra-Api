@@ -53,15 +53,17 @@ import {WebRewardsModule} from './resources/web-rewards/web-rewards.module';
 import {PlayerRecipesModule} from './resources/player/player-recipes/player-recipes.module';
 import { BannedIpModule } from './resources/bans/banned-ip/banned-ip.module';
 import { BannedMacModule } from './resources/bans/banned-mac/banned-mac.module';
+import { AccountsService } from './resources/accounts/accounts.service';
 
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
       useFactory: async () =>
-          Object.assign(await getConnectionOptions(), {
-            autoLoadEntities: true,
-          }),
-    }),
+        Object.assign(await 
+         getConnectionOptions(), {
+          autoLoadEntities: true,
+        }),
+      }),
     AccountsModule,
     PlayersModule,
     PlayerMotionsModule,
@@ -110,6 +112,7 @@ import { BannedMacModule } from './resources/bans/banned-mac/banned-mac.module';
   ],
   controllers: [AppController],
   providers: [AppService],
+  exports: [AppService]
 })
 export class AppModule {
 
@@ -118,6 +121,7 @@ export class AppModule {
             .apply(AuthenticationMiddleware)
             .exclude(
                 { path: 'accounts/login', method: RequestMethod.POST },
+                { path: 'register', method: RequestMethod.POST },
                 { path: 'players', method: RequestMethod.GET },
                 { path: 'abyssRanks', method: RequestMethod.GET },
             )

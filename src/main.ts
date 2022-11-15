@@ -7,7 +7,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Beritra API')
-    .setDescription('TBeritra API swagger')
+    .setDescription('Beritra API swagger')
     .setVersion('1.0')
     .addTag('API')
     .build();

@@ -7,7 +7,7 @@ async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     const config = new swagger_1.DocumentBuilder()
         .setTitle('Beritra API')
-        .setDescription('TBeritra API swagger')
+        .setDescription('Beritra API swagger')
         .setVersion('1.0')
         .addTag('API')
         .build();

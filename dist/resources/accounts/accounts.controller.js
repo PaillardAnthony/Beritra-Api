@@ -13,6 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountsController = void 0;
+const openapi = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
 const accounts_service_1 = require("./accounts.service");
 const create_account_dto_1 = require("./dto/create-account.dto");
@@ -40,9 +41,16 @@ let AccountsController = class AccountsController {
     login(login) {
         return this.accountsService.auth(login);
     }
+    async register(name, password) {
+        return this.accountsService.create({
+            name,
+            password: this.accountsService.hashPass(password),
+        });
+    }
 };
 __decorate([
     (0, common_1.Post)(),
+    openapi.ApiResponse({ status: 201, type: Object }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_account_dto_1.CreateAccountDto]),
@@ -50,12 +58,14 @@ __decorate([
 ], AccountsController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    openapi.ApiResponse({ status: 200, type: [require("../../entities/AccountData").AccountData] }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], AccountsController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    openapi.ApiResponse({ status: 200, type: require("../../entities/AccountData").AccountData }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -63,6 +73,7 @@ __decorate([
 ], AccountsController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -71,6 +82,7 @@ __decorate([
 ], AccountsController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -78,11 +90,21 @@ __decorate([
 ], AccountsController.prototype, "remove", null);
 __decorate([
     (0, common_1.Post)('/login'),
+    openapi.ApiResponse({ status: 201, type: Object }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [auth_dto_1.AuthDto]),
     __metadata("design:returntype", void 0)
 ], AccountsController.prototype, "login", null);
+__decorate([
+    (0, common_1.Post)('/register'),
+    openapi.ApiResponse({ status: 201, type: Object }),
+    __param(0, (0, common_1.Body)('name')),
+    __param(1, (0, common_1.Body)('password')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], AccountsController.prototype, "register", null);
 AccountsController = __decorate([
     (0, common_1.Controller)('accounts'),
     __metadata("design:paramtypes", [accounts_service_1.AccountsService])

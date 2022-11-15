@@ -62,7 +62,7 @@ let AppModule = class AppModule {
     configure(consumer) {
         consumer
             .apply(authentication_middleware_1.AuthenticationMiddleware)
-            .exclude({ path: 'accounts/login', method: common_1.RequestMethod.POST }, { path: 'players', method: common_1.RequestMethod.GET }, { path: 'abyssRanks', method: common_1.RequestMethod.GET })
+            .exclude({ path: 'accounts/login', method: common_1.RequestMethod.POST }, { path: 'register', method: common_1.RequestMethod.POST }, { path: 'players', method: common_1.RequestMethod.GET }, { path: 'abyssRanks', method: common_1.RequestMethod.GET })
             .forRoutes({ path: 'accounts', method: common_1.RequestMethod.ALL }, { path: 'players', method: common_1.RequestMethod.ALL }, { path: 'abyssRank', method: common_1.RequestMethod.ALL });
     }
 };
@@ -122,6 +122,7 @@ AppModule = __decorate([
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
+        exports: [app_service_1.AppService]
     })
 ], AppModule);
 exports.AppModule = AppModule;

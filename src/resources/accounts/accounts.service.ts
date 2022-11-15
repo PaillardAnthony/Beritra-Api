@@ -15,14 +15,15 @@ export interface LoginOutput {
   account: Omit<AccountData, 'password' | 'hashPassword'>;
   jwt: string;
 }
-
 @Injectable()
 export class AccountsService {
 
   constructor(@InjectRepository(AccountData) private repository: Repository<AccountData>) {
   }
-  create(createAccountDto: CreateAccountDto) {
-    return this.repository.create(createAccountDto);
+
+
+  create(createAccountDto: UpdateAccountDto) {
+    return this.repository.save(createAccountDto);
   }
 
   findAll() {
@@ -71,6 +72,10 @@ export class AccountsService {
     };
 
     return loginOutput;
+  }
+
+  hashPass(password: string): string {
+    return crypto.createHash('sha1').update(password).digest('base64');
   }
 
 }

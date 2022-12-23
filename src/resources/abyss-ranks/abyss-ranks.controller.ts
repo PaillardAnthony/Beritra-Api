@@ -1,7 +1,8 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import { AbyssRanksService } from './abyss-ranks.service';
 import { UpdateAbyssRankDto } from './dto/update-abyss-rank.dto';
-
+@ApiBearerAuth()
 @Controller('abyss-ranks')
 export class AbyssRanksController {
   constructor(private readonly abyssRanksService: AbyssRanksService) {}

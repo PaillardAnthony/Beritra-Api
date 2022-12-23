@@ -8,10 +8,6 @@ import { AuthDto } from "./dto/auth.dto";
 export class AccountsController {
   constructor(private readonly accountsService: AccountsService) {}
 
-  @Post()
-  create(@Body() createAccountDto: CreateAccountDto) {
-    return this.accountsService.create(createAccountDto);
-  }
 
   @Get()
   findAll() {

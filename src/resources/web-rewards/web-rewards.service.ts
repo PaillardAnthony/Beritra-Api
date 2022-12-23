@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { CreateWebRewardDto } from './dto/create-web-reward.dto';
 import { UpdateWebRewardDto } from './dto/update-web-reward.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { WebReward } from './../../entities/WebReward';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class WebRewardsService {
-  create(createWebRewardDto: CreateWebRewardDto) {
-    return 'This action adds a new webReward';
+
+  constructor(@InjectRepository(WebReward) private repository: Repository<WebReward>) {
+
+  }
+
+  async create(createWebRewardDto: CreateWebRewardDto) {
+    return this.repository.save(createWebRewardDto);
   }
 
   findAll() {
-    return `This action returns all webRewards`;
+    return this.repository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} webReward`;
+    return this.repository.findOne(id);
   }
 
   update(id: number, updateWebRewardDto: UpdateWebRewardDto) {
-    return `This action updates a #${id} webReward`;
+    return this.repository.update(id, updateWebRewardDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} webReward`;
+    return this.repository.delete(id);
   }
 }

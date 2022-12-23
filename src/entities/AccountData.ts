@@ -1,3 +1,4 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Index("name", ["name"], { unique: true })
@@ -5,10 +6,12 @@ import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 export class AccountData {
   @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id: number;
-
+  
+  @ApiProperty()
   @Column("varchar", { name: "name", unique: true, length: 45 })
   name: string;
-
+  
+  @ApiProperty()
   @Column("varchar", { name: "password", length: 65 })
   password: string;
 
